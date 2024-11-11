@@ -8,7 +8,7 @@ Bienvenido al repositorio del Ecommerce para la venta de libros. Este proyecto e
 Esta aplicación web es una tienda en línea de libros, donde los usuarios pueden:
 
 - Explorar una amplia variedad de libros por categorías.
-- Ver detalles de cada libro (título, autor, precio, descripción).
+- Ver detalles de cada libro (título, autor, precio, descripción,etc).
 - Agregar libros a su carrito de compras.
 - Realizar pagos seguros a través de una pasarela de pago.
 - Administrar su cuenta y pedidos.
