@@ -1,4 +1,4 @@
-# RamiritosEcomerce
+# RamiritosEcomerce 😊
 # Ecommerce de Libros
 
 Bienvenido al repositorio del Ecommerce para la venta de libros. Este proyecto está diseñado para ofrecer una plataforma en línea donde los usuarios pueden explorar, comprar y recibir libros de manera sencilla y eficiente.
