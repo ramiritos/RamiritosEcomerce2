@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ECommercelibrosModelStoreContainer" CdmEntityContainer="ECommercelibrosEntities">
+    <EntitySetMapping Name="Autor">
+      <EntityTypeMapping TypeName="ECommercelibrosModel.Autor">
+        <MappingFragment StoreEntitySet="Autor">
+          <ScalarProperty Name="AutorID" ColumnName="AutorID" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Autor_Producto">
+      <EntityTypeMapping TypeName="ECommercelibrosModel.Autor_Producto">
+        <MappingFragment StoreEntitySet="Autor_Producto">
+          <ScalarProperty Name="AutorID" ColumnName="AutorID" />
+          <ScalarProperty Name="producto_id" ColumnName="producto_id" />
+          <ScalarProperty Name="FechaAsociacion" ColumnName="FechaAsociacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="categorias">
+      <EntityTypeMapping TypeName="ECommercelibrosModel.categorias">
+        <MappingFragment StoreEntitySet="categorias">
+          <ScalarProperty Name="categoria_id" ColumnName="categoria_id" />
+          <ScalarProperty Name="nombre_categoria" ColumnName="nombre_categoria" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="envios">
+      <EntityTypeMapping TypeName="ECommercelibrosModel.envios">
+        <MappingFragment StoreEntitySet="envios">
+          <ScalarProperty Name="envio_id" ColumnName="envio_id" />
+          <ScalarProperty Name="pedido_id" ColumnName="pedido_id" />
+          <ScalarProperty Name="direccion_envio" ColumnName="direccion_envio" />
+          <ScalarProperty Name="ciudad" ColumnName="ciudad" />
+          <ScalarProperty Name="codigo_postal" ColumnName="codigo_postal" />
+          <ScalarProperty Name="pais" ColumnName="pais" />
+          <ScalarProperty Name="fecha_envio" ColumnName="fecha_envio" />
+          <ScalarProperty Name="fecha_entrega_estimada" ColumnName="fecha_entrega_estimada" />
+          <ScalarProperty Name="fecha_entrega" ColumnName="fecha_entrega" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Imagen_Producto">
+      <EntityTypeMapping TypeName="ECommercelibrosModel.Imagen_Producto">
+        <MappingFragment StoreEntitySet="Imagen_Producto">
+          <ScalarProperty Name="ImagenID" ColumnName="ImagenID" />
+          <ScalarProperty Name="producto_id" ColumnName="producto_id" />
+          <ScalarProperty Name="UrlImagen" ColumnName="UrlImagen" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="metodos_pago">
+      <EntityTypeMapping TypeName="ECommercelibrosModel.metodos_pago">
+        <MappingFragment StoreEntitySet="metodos_pago">
+          <ScalarProperty Name="metodo_pago_id" ColumnName="metodo_pago_id" />
+          <ScalarProperty Name="nombre_metodo" ColumnName="nombre_metodo" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pedido_productos">
+      <EntityTypeMapping TypeName="ECommercelibrosModel.pedido_productos">
+        <MappingFragment StoreEntitySet="pedido_productos">
+          <ScalarProperty Name="pedido_id" ColumnName="pedido_id" />
+          <ScalarProperty Name="producto_id" ColumnName="producto_id" />
+          <ScalarProperty Name="preciot" ColumnName="preciot" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pedidos">
+      <EntityTypeMapping TypeName="ECommercelibrosModel.pedidos">
+        <MappingFragment StoreEntitySet="pedidos">
+          <ScalarProperty Name="pedido_id" ColumnName="pedido_id" />
+          <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+          <ScalarProperty Name="fecha_pedido" ColumnName="fecha_pedido" />
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="producto_categorias">
+      <EntityTypeMapping TypeName="ECommercelibrosModel.producto_categorias">
+        <MappingFragment StoreEntitySet="producto_categorias">
+          <ScalarProperty Name="producto_id" ColumnName="producto_id" />
+          <ScalarProperty Name="categoria_id" ColumnName="categoria_id" />
+          <ScalarProperty Name="pcDescripcion" ColumnName="pcDescripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="productos">
+      <EntityTypeMapping TypeName="ECommercelibrosModel.productos">
+        <MappingFragment StoreEntitySet="productos">
+          <ScalarProperty Name="producto_id" ColumnName="producto_id" />
+          <ScalarProperty Name="titulo" ColumnName="titulo" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="tipo_producto" ColumnName="tipo_producto" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
+          <ScalarProperty Name="genero" ColumnName="genero" />
+          <ScalarProperty Name="fecha_publicacion" ColumnName="fecha_publicacion" />
+          <ScalarProperty Name="stock" ColumnName="stock" />
+          <ScalarProperty Name="idioma" ColumnName="idioma" />
+          <ScalarProperty Name="url_archivo" ColumnName="url_archivo" />
+          <ScalarProperty Name="peso" ColumnName="peso" />
+          <ScalarProperty Name="paginas" ColumnName="paginas" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="transacciones">
+      <EntityTypeMapping TypeName="ECommercelibrosModel.transacciones">
+        <MappingFragment StoreEntitySet="transacciones">
+          <ScalarProperty Name="transaccion_id" ColumnName="transaccion_id" />
+          <ScalarProperty Name="pedido_id" ColumnName="pedido_id" />
+          <ScalarProperty Name="metodo_pago_id" ColumnName="metodo_pago_id" />
+          <ScalarProperty Name="fecha_pago" ColumnName="fecha_pago" />
+          <ScalarProperty Name="monto" ColumnName="monto" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuarios">
+      <EntityTypeMapping TypeName="ECommercelibrosModel.usuarios">
+        <MappingFragment StoreEntitySet="usuarios">
+          <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="contraseña_hash" ColumnName="contraseña_hash" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="es_admin" ColumnName="es_admin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

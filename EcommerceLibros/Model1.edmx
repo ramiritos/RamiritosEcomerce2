@@ -1,0 +1,845 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ECommercelibrosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Autor">
+          <Key>
+            <PropertyRef Name="AutorID" />
+          </Key>
+          <Property Name="AutorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="FechaNacimiento" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Autor_Producto">
+          <Key>
+            <PropertyRef Name="AutorID" />
+            <PropertyRef Name="producto_id" />
+          </Key>
+          <Property Name="AutorID" Type="int" Nullable="false" />
+          <Property Name="producto_id" Type="int" Nullable="false" />
+          <Property Name="FechaAsociacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="categorias">
+          <Key>
+            <PropertyRef Name="categoria_id" />
+          </Key>
+          <Property Name="categoria_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_categoria" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="descripcion" Type="text" />
+        </EntityType>
+        <EntityType Name="envios">
+          <Key>
+            <PropertyRef Name="envio_id" />
+          </Key>
+          <Property Name="envio_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pedido_id" Type="int" />
+          <Property Name="direccion_envio" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ciudad" Type="varchar" MaxLength="100" />
+          <Property Name="codigo_postal" Type="varchar" MaxLength="10" />
+          <Property Name="pais" Type="varchar" MaxLength="100" />
+          <Property Name="fecha_envio" Type="datetime" />
+          <Property Name="fecha_entrega_estimada" Type="datetime" />
+          <Property Name="fecha_entrega" Type="datetime" />
+          <Property Name="estado" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Imagen_Producto">
+          <Key>
+            <PropertyRef Name="ImagenID" />
+          </Key>
+          <Property Name="ImagenID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="producto_id" Type="int" />
+          <Property Name="UrlImagen" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="255" />
+          <Property Name="FechaCreacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="metodos_pago">
+          <Key>
+            <PropertyRef Name="metodo_pago_id" />
+          </Key>
+          <Property Name="metodo_pago_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_metodo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="descripcion" Type="text" />
+        </EntityType>
+        <EntityType Name="pedido_productos">
+          <Key>
+            <PropertyRef Name="pedido_id" />
+            <PropertyRef Name="producto_id" />
+          </Key>
+          <Property Name="pedido_id" Type="int" Nullable="false" />
+          <Property Name="producto_id" Type="int" Nullable="false" />
+          <Property Name="preciot" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="cantidad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pedidos">
+          <Key>
+            <PropertyRef Name="pedido_id" />
+          </Key>
+          <Property Name="pedido_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usuario_id" Type="int" />
+          <Property Name="fecha_pedido" Type="datetime" />
+          <Property Name="total" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="estado" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="producto_categorias">
+          <Key>
+            <PropertyRef Name="producto_id" />
+            <PropertyRef Name="categoria_id" />
+          </Key>
+          <Property Name="producto_id" Type="int" Nullable="false" />
+          <Property Name="categoria_id" Type="int" Nullable="false" />
+          <Property Name="pcDescripcion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="productos">
+          <Key>
+            <PropertyRef Name="producto_id" />
+          </Key>
+          <Property Name="producto_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="titulo" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="descripcion" Type="text" />
+          <Property Name="tipo_producto" Type="varchar" MaxLength="50" />
+          <Property Name="precio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="genero" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_publicacion" Type="date" />
+          <Property Name="stock" Type="int" />
+          <Property Name="idioma" Type="varchar" MaxLength="50" />
+          <Property Name="url_archivo" Type="varchar" MaxLength="255" />
+          <Property Name="peso" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="paginas" Type="int" />
+        </EntityType>
+        <EntityType Name="transacciones">
+          <Key>
+            <PropertyRef Name="transaccion_id" />
+          </Key>
+          <Property Name="transaccion_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pedido_id" Type="int" />
+          <Property Name="metodo_pago_id" Type="int" />
+          <Property Name="fecha_pago" Type="datetime" />
+          <Property Name="monto" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="estado" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="usuarios">
+          <Key>
+            <PropertyRef Name="usuario_id" />
+          </Key>
+          <Property Name="usuario_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="contraseña_hash" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="direccion" Type="varchar" MaxLength="255" />
+          <Property Name="telefono" Type="varchar" MaxLength="15" />
+          <Property Name="es_admin" Type="bit" />
+        </EntityType>
+        <Association Name="FK__Autor_Pro__Autor__4316F928">
+          <End Role="Autor" Type="Self.Autor" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Autor_Producto" Type="Self.Autor_Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Autor">
+              <PropertyRef Name="AutorID" />
+            </Principal>
+            <Dependent Role="Autor_Producto">
+              <PropertyRef Name="AutorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Autor_Pro__produ__440B1D61">
+          <End Role="productos" Type="Self.productos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Autor_Producto" Type="Self.Autor_Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="producto_id" />
+            </Principal>
+            <Dependent Role="Autor_Producto">
+              <PropertyRef Name="producto_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__envios__pedido_i__59FA5E80">
+          <End Role="pedidos" Type="Self.pedidos" Multiplicity="0..1" />
+          <End Role="envios" Type="Self.envios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pedidos">
+              <PropertyRef Name="pedido_id" />
+            </Principal>
+            <Dependent Role="envios">
+              <PropertyRef Name="pedido_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Imagen_Pr__produ__534D60F1">
+          <End Role="productos" Type="Self.productos" Multiplicity="0..1" />
+          <End Role="Imagen_Producto" Type="Self.Imagen_Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="producto_id" />
+            </Principal>
+            <Dependent Role="Imagen_Producto">
+              <PropertyRef Name="producto_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__pedido_pr__pedid__5629CD9C">
+          <End Role="pedidos" Type="Self.pedidos" Multiplicity="1" />
+          <End Role="pedido_productos" Type="Self.pedido_productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pedidos">
+              <PropertyRef Name="pedido_id" />
+            </Principal>
+            <Dependent Role="pedido_productos">
+              <PropertyRef Name="pedido_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__pedido_pr__produ__571DF1D5">
+          <End Role="productos" Type="Self.productos" Multiplicity="1" />
+          <End Role="pedido_productos" Type="Self.pedido_productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="producto_id" />
+            </Principal>
+            <Dependent Role="pedido_productos">
+              <PropertyRef Name="producto_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__pedidos__usuario__4D94879B">
+          <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
+          <End Role="pedidos" Type="Self.pedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios">
+              <PropertyRef Name="usuario_id" />
+            </Principal>
+            <Dependent Role="pedidos">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__producto___categ__4AB81AF0">
+          <End Role="categorias" Type="Self.categorias" Multiplicity="1" />
+          <End Role="producto_categorias" Type="Self.producto_categorias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categorias">
+              <PropertyRef Name="categoria_id" />
+            </Principal>
+            <Dependent Role="producto_categorias">
+              <PropertyRef Name="categoria_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__producto___produ__49C3F6B7">
+          <End Role="productos" Type="Self.productos" Multiplicity="1" />
+          <End Role="producto_categorias" Type="Self.producto_categorias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="producto_id" />
+            </Principal>
+            <Dependent Role="producto_categorias">
+              <PropertyRef Name="producto_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__transacci__metod__628FA481">
+          <End Role="metodos_pago" Type="Self.metodos_pago" Multiplicity="0..1" />
+          <End Role="transacciones" Type="Self.transacciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="metodos_pago">
+              <PropertyRef Name="metodo_pago_id" />
+            </Principal>
+            <Dependent Role="transacciones">
+              <PropertyRef Name="metodo_pago_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__transacci__pedid__619B8048">
+          <End Role="pedidos" Type="Self.pedidos" Multiplicity="0..1" />
+          <End Role="transacciones" Type="Self.transacciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pedidos">
+              <PropertyRef Name="pedido_id" />
+            </Principal>
+            <Dependent Role="transacciones">
+              <PropertyRef Name="pedido_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ECommercelibrosModelStoreContainer">
+          <EntitySet Name="Autor" EntityType="Self.Autor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Autor_Producto" EntityType="Self.Autor_Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="categorias" EntityType="Self.categorias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="envios" EntityType="Self.envios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Imagen_Producto" EntityType="Self.Imagen_Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="metodos_pago" EntityType="Self.metodos_pago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pedido_productos" EntityType="Self.pedido_productos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pedidos" EntityType="Self.pedidos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="producto_categorias" EntityType="Self.producto_categorias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="productos" EntityType="Self.productos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="transacciones" EntityType="Self.transacciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Autor_Pro__Autor__4316F928" Association="Self.FK__Autor_Pro__Autor__4316F928">
+            <End Role="Autor" EntitySet="Autor" />
+            <End Role="Autor_Producto" EntitySet="Autor_Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Autor_Pro__produ__440B1D61" Association="Self.FK__Autor_Pro__produ__440B1D61">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="Autor_Producto" EntitySet="Autor_Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__envios__pedido_i__59FA5E80" Association="Self.FK__envios__pedido_i__59FA5E80">
+            <End Role="pedidos" EntitySet="pedidos" />
+            <End Role="envios" EntitySet="envios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Imagen_Pr__produ__534D60F1" Association="Self.FK__Imagen_Pr__produ__534D60F1">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="Imagen_Producto" EntitySet="Imagen_Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__pedido_pr__pedid__5629CD9C" Association="Self.FK__pedido_pr__pedid__5629CD9C">
+            <End Role="pedidos" EntitySet="pedidos" />
+            <End Role="pedido_productos" EntitySet="pedido_productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__pedido_pr__produ__571DF1D5" Association="Self.FK__pedido_pr__produ__571DF1D5">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="pedido_productos" EntitySet="pedido_productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__pedidos__usuario__4D94879B" Association="Self.FK__pedidos__usuario__4D94879B">
+            <End Role="usuarios" EntitySet="usuarios" />
+            <End Role="pedidos" EntitySet="pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__producto___categ__4AB81AF0" Association="Self.FK__producto___categ__4AB81AF0">
+            <End Role="categorias" EntitySet="categorias" />
+            <End Role="producto_categorias" EntitySet="producto_categorias" />
+          </AssociationSet>
+          <AssociationSet Name="FK__producto___produ__49C3F6B7" Association="Self.FK__producto___produ__49C3F6B7">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="producto_categorias" EntitySet="producto_categorias" />
+          </AssociationSet>
+          <AssociationSet Name="FK__transacci__metod__628FA481" Association="Self.FK__transacci__metod__628FA481">
+            <End Role="metodos_pago" EntitySet="metodos_pago" />
+            <End Role="transacciones" EntitySet="transacciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__transacci__pedid__619B8048" Association="Self.FK__transacci__pedid__619B8048">
+            <End Role="pedidos" EntitySet="pedidos" />
+            <End Role="transacciones" EntitySet="transacciones" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ECommercelibrosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Autor">
+          <Key>
+            <PropertyRef Name="AutorID" />
+          </Key>
+          <Property Name="AutorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FechaNacimiento" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Autor_Producto" Relationship="Self.FK__Autor_Pro__Autor__4316F928" FromRole="Autor" ToRole="Autor_Producto" />
+        </EntityType>
+        <EntityType Name="Autor_Producto">
+          <Key>
+            <PropertyRef Name="AutorID" />
+            <PropertyRef Name="producto_id" />
+          </Key>
+          <Property Name="AutorID" Type="Int32" Nullable="false" />
+          <Property Name="producto_id" Type="Int32" Nullable="false" />
+          <Property Name="FechaAsociacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Autor" Relationship="Self.FK__Autor_Pro__Autor__4316F928" FromRole="Autor_Producto" ToRole="Autor" />
+          <NavigationProperty Name="productos" Relationship="Self.FK__Autor_Pro__produ__440B1D61" FromRole="Autor_Producto" ToRole="productos" />
+        </EntityType>
+        <EntityType Name="categorias">
+          <Key>
+            <PropertyRef Name="categoria_id" />
+          </Key>
+          <Property Name="categoria_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_categoria" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="producto_categorias" Relationship="Self.FK__producto___categ__4AB81AF0" FromRole="categorias" ToRole="producto_categorias" />
+        </EntityType>
+        <EntityType Name="envios">
+          <Key>
+            <PropertyRef Name="envio_id" />
+          </Key>
+          <Property Name="envio_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pedido_id" Type="Int32" />
+          <Property Name="direccion_envio" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ciudad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="codigo_postal" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="pais" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_envio" Type="DateTime" Precision="3" />
+          <Property Name="fecha_entrega_estimada" Type="DateTime" Precision="3" />
+          <Property Name="fecha_entrega" Type="DateTime" Precision="3" />
+          <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="pedidos" Relationship="Self.FK__envios__pedido_i__59FA5E80" FromRole="envios" ToRole="pedidos" />
+        </EntityType>
+        <EntityType Name="Imagen_Producto">
+          <Key>
+            <PropertyRef Name="ImagenID" />
+          </Key>
+          <Property Name="ImagenID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="producto_id" Type="Int32" />
+          <Property Name="UrlImagen" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="productos" Relationship="Self.FK__Imagen_Pr__produ__534D60F1" FromRole="Imagen_Producto" ToRole="productos" />
+        </EntityType>
+        <EntityType Name="metodos_pago">
+          <Key>
+            <PropertyRef Name="metodo_pago_id" />
+          </Key>
+          <Property Name="metodo_pago_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_metodo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="transacciones" Relationship="Self.FK__transacci__metod__628FA481" FromRole="metodos_pago" ToRole="transacciones" />
+        </EntityType>
+        <EntityType Name="pedido_productos">
+          <Key>
+            <PropertyRef Name="pedido_id" />
+            <PropertyRef Name="producto_id" />
+          </Key>
+          <Property Name="pedido_id" Type="Int32" Nullable="false" />
+          <Property Name="producto_id" Type="Int32" Nullable="false" />
+          <Property Name="preciot" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="pedidos" Relationship="Self.FK__pedido_pr__pedid__5629CD9C" FromRole="pedido_productos" ToRole="pedidos" />
+          <NavigationProperty Name="productos" Relationship="Self.FK__pedido_pr__produ__571DF1D5" FromRole="pedido_productos" ToRole="productos" />
+        </EntityType>
+        <EntityType Name="pedidos">
+          <Key>
+            <PropertyRef Name="pedido_id" />
+          </Key>
+          <Property Name="pedido_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usuario_id" Type="Int32" />
+          <Property Name="fecha_pedido" Type="DateTime" Precision="3" />
+          <Property Name="total" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="envios" Relationship="Self.FK__envios__pedido_i__59FA5E80" FromRole="pedidos" ToRole="envios" />
+          <NavigationProperty Name="pedido_productos" Relationship="Self.FK__pedido_pr__pedid__5629CD9C" FromRole="pedidos" ToRole="pedido_productos" />
+          <NavigationProperty Name="usuarios" Relationship="Self.FK__pedidos__usuario__4D94879B" FromRole="pedidos" ToRole="usuarios" />
+          <NavigationProperty Name="transacciones" Relationship="Self.FK__transacci__pedid__619B8048" FromRole="pedidos" ToRole="transacciones" />
+        </EntityType>
+        <EntityType Name="producto_categorias">
+          <Key>
+            <PropertyRef Name="producto_id" />
+            <PropertyRef Name="categoria_id" />
+          </Key>
+          <Property Name="producto_id" Type="Int32" Nullable="false" />
+          <Property Name="categoria_id" Type="Int32" Nullable="false" />
+          <Property Name="pcDescripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="categorias" Relationship="Self.FK__producto___categ__4AB81AF0" FromRole="producto_categorias" ToRole="categorias" />
+          <NavigationProperty Name="productos" Relationship="Self.FK__producto___produ__49C3F6B7" FromRole="producto_categorias" ToRole="productos" />
+        </EntityType>
+        <EntityType Name="productos">
+          <Key>
+            <PropertyRef Name="producto_id" />
+          </Key>
+          <Property Name="producto_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="titulo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="tipo_producto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="precio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="genero" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_publicacion" Type="DateTime" Precision="0" />
+          <Property Name="stock" Type="Int32" />
+          <Property Name="idioma" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="url_archivo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="peso" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="paginas" Type="Int32" />
+          <NavigationProperty Name="Autor_Producto" Relationship="Self.FK__Autor_Pro__produ__440B1D61" FromRole="productos" ToRole="Autor_Producto" />
+          <NavigationProperty Name="Imagen_Producto" Relationship="Self.FK__Imagen_Pr__produ__534D60F1" FromRole="productos" ToRole="Imagen_Producto" />
+          <NavigationProperty Name="pedido_productos" Relationship="Self.FK__pedido_pr__produ__571DF1D5" FromRole="productos" ToRole="pedido_productos" />
+          <NavigationProperty Name="producto_categorias" Relationship="Self.FK__producto___produ__49C3F6B7" FromRole="productos" ToRole="producto_categorias" />
+        </EntityType>
+        <EntityType Name="transacciones">
+          <Key>
+            <PropertyRef Name="transaccion_id" />
+          </Key>
+          <Property Name="transaccion_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pedido_id" Type="Int32" />
+          <Property Name="metodo_pago_id" Type="Int32" />
+          <Property Name="fecha_pago" Type="DateTime" Precision="3" />
+          <Property Name="monto" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="metodos_pago" Relationship="Self.FK__transacci__metod__628FA481" FromRole="transacciones" ToRole="metodos_pago" />
+          <NavigationProperty Name="pedidos" Relationship="Self.FK__transacci__pedid__619B8048" FromRole="transacciones" ToRole="pedidos" />
+        </EntityType>
+        <EntityType Name="usuarios">
+          <Key>
+            <PropertyRef Name="usuario_id" />
+          </Key>
+          <Property Name="usuario_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contraseña_hash" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="direccion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="es_admin" Type="Boolean" />
+          <NavigationProperty Name="pedidos" Relationship="Self.FK__pedidos__usuario__4D94879B" FromRole="usuarios" ToRole="pedidos" />
+        </EntityType>
+        <Association Name="FK__Autor_Pro__Autor__4316F928">
+          <End Role="Autor" Type="Self.Autor" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Autor_Producto" Type="Self.Autor_Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Autor">
+              <PropertyRef Name="AutorID" />
+            </Principal>
+            <Dependent Role="Autor_Producto">
+              <PropertyRef Name="AutorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Autor_Pro__produ__440B1D61">
+          <End Role="productos" Type="Self.productos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Autor_Producto" Type="Self.Autor_Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="producto_id" />
+            </Principal>
+            <Dependent Role="Autor_Producto">
+              <PropertyRef Name="producto_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__producto___categ__4AB81AF0">
+          <End Role="categorias" Type="Self.categorias" Multiplicity="1" />
+          <End Role="producto_categorias" Type="Self.producto_categorias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categorias">
+              <PropertyRef Name="categoria_id" />
+            </Principal>
+            <Dependent Role="producto_categorias">
+              <PropertyRef Name="categoria_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__envios__pedido_i__59FA5E80">
+          <End Role="pedidos" Type="Self.pedidos" Multiplicity="0..1" />
+          <End Role="envios" Type="Self.envios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pedidos">
+              <PropertyRef Name="pedido_id" />
+            </Principal>
+            <Dependent Role="envios">
+              <PropertyRef Name="pedido_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Imagen_Pr__produ__534D60F1">
+          <End Role="productos" Type="Self.productos" Multiplicity="0..1" />
+          <End Role="Imagen_Producto" Type="Self.Imagen_Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="producto_id" />
+            </Principal>
+            <Dependent Role="Imagen_Producto">
+              <PropertyRef Name="producto_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__transacci__metod__628FA481">
+          <End Role="metodos_pago" Type="Self.metodos_pago" Multiplicity="0..1" />
+          <End Role="transacciones" Type="Self.transacciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="metodos_pago">
+              <PropertyRef Name="metodo_pago_id" />
+            </Principal>
+            <Dependent Role="transacciones">
+              <PropertyRef Name="metodo_pago_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__pedido_pr__pedid__5629CD9C">
+          <End Role="pedidos" Type="Self.pedidos" Multiplicity="1" />
+          <End Role="pedido_productos" Type="Self.pedido_productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pedidos">
+              <PropertyRef Name="pedido_id" />
+            </Principal>
+            <Dependent Role="pedido_productos">
+              <PropertyRef Name="pedido_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__pedido_pr__produ__571DF1D5">
+          <End Role="productos" Type="Self.productos" Multiplicity="1" />
+          <End Role="pedido_productos" Type="Self.pedido_productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="producto_id" />
+            </Principal>
+            <Dependent Role="pedido_productos">
+              <PropertyRef Name="producto_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__pedidos__usuario__4D94879B">
+          <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
+          <End Role="pedidos" Type="Self.pedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios">
+              <PropertyRef Name="usuario_id" />
+            </Principal>
+            <Dependent Role="pedidos">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__transacci__pedid__619B8048">
+          <End Role="pedidos" Type="Self.pedidos" Multiplicity="0..1" />
+          <End Role="transacciones" Type="Self.transacciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pedidos">
+              <PropertyRef Name="pedido_id" />
+            </Principal>
+            <Dependent Role="transacciones">
+              <PropertyRef Name="pedido_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__producto___produ__49C3F6B7">
+          <End Role="productos" Type="Self.productos" Multiplicity="1" />
+          <End Role="producto_categorias" Type="Self.producto_categorias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="producto_id" />
+            </Principal>
+            <Dependent Role="producto_categorias">
+              <PropertyRef Name="producto_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ECommercelibrosEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Autor" EntityType="Self.Autor" />
+          <EntitySet Name="Autor_Producto" EntityType="Self.Autor_Producto" />
+          <EntitySet Name="categorias" EntityType="Self.categorias" />
+          <EntitySet Name="envios" EntityType="Self.envios" />
+          <EntitySet Name="Imagen_Producto" EntityType="Self.Imagen_Producto" />
+          <EntitySet Name="metodos_pago" EntityType="Self.metodos_pago" />
+          <EntitySet Name="pedido_productos" EntityType="Self.pedido_productos" />
+          <EntitySet Name="pedidos" EntityType="Self.pedidos" />
+          <EntitySet Name="producto_categorias" EntityType="Self.producto_categorias" />
+          <EntitySet Name="productos" EntityType="Self.productos" />
+          <EntitySet Name="transacciones" EntityType="Self.transacciones" />
+          <EntitySet Name="usuarios" EntityType="Self.usuarios" />
+          <AssociationSet Name="FK__Autor_Pro__Autor__4316F928" Association="Self.FK__Autor_Pro__Autor__4316F928">
+            <End Role="Autor" EntitySet="Autor" />
+            <End Role="Autor_Producto" EntitySet="Autor_Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Autor_Pro__produ__440B1D61" Association="Self.FK__Autor_Pro__produ__440B1D61">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="Autor_Producto" EntitySet="Autor_Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__producto___categ__4AB81AF0" Association="Self.FK__producto___categ__4AB81AF0">
+            <End Role="categorias" EntitySet="categorias" />
+            <End Role="producto_categorias" EntitySet="producto_categorias" />
+          </AssociationSet>
+          <AssociationSet Name="FK__envios__pedido_i__59FA5E80" Association="Self.FK__envios__pedido_i__59FA5E80">
+            <End Role="pedidos" EntitySet="pedidos" />
+            <End Role="envios" EntitySet="envios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Imagen_Pr__produ__534D60F1" Association="Self.FK__Imagen_Pr__produ__534D60F1">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="Imagen_Producto" EntitySet="Imagen_Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__transacci__metod__628FA481" Association="Self.FK__transacci__metod__628FA481">
+            <End Role="metodos_pago" EntitySet="metodos_pago" />
+            <End Role="transacciones" EntitySet="transacciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__pedido_pr__pedid__5629CD9C" Association="Self.FK__pedido_pr__pedid__5629CD9C">
+            <End Role="pedidos" EntitySet="pedidos" />
+            <End Role="pedido_productos" EntitySet="pedido_productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__pedido_pr__produ__571DF1D5" Association="Self.FK__pedido_pr__produ__571DF1D5">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="pedido_productos" EntitySet="pedido_productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__pedidos__usuario__4D94879B" Association="Self.FK__pedidos__usuario__4D94879B">
+            <End Role="usuarios" EntitySet="usuarios" />
+            <End Role="pedidos" EntitySet="pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__transacci__pedid__619B8048" Association="Self.FK__transacci__pedid__619B8048">
+            <End Role="pedidos" EntitySet="pedidos" />
+            <End Role="transacciones" EntitySet="transacciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__producto___produ__49C3F6B7" Association="Self.FK__producto___produ__49C3F6B7">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="producto_categorias" EntitySet="producto_categorias" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ECommercelibrosModelStoreContainer" CdmEntityContainer="ECommercelibrosEntities">
+          <EntitySetMapping Name="Autor">
+            <EntityTypeMapping TypeName="ECommercelibrosModel.Autor">
+              <MappingFragment StoreEntitySet="Autor">
+                <ScalarProperty Name="AutorID" ColumnName="AutorID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Autor_Producto">
+            <EntityTypeMapping TypeName="ECommercelibrosModel.Autor_Producto">
+              <MappingFragment StoreEntitySet="Autor_Producto">
+                <ScalarProperty Name="AutorID" ColumnName="AutorID" />
+                <ScalarProperty Name="producto_id" ColumnName="producto_id" />
+                <ScalarProperty Name="FechaAsociacion" ColumnName="FechaAsociacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="categorias">
+            <EntityTypeMapping TypeName="ECommercelibrosModel.categorias">
+              <MappingFragment StoreEntitySet="categorias">
+                <ScalarProperty Name="categoria_id" ColumnName="categoria_id" />
+                <ScalarProperty Name="nombre_categoria" ColumnName="nombre_categoria" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="envios">
+            <EntityTypeMapping TypeName="ECommercelibrosModel.envios">
+              <MappingFragment StoreEntitySet="envios">
+                <ScalarProperty Name="envio_id" ColumnName="envio_id" />
+                <ScalarProperty Name="pedido_id" ColumnName="pedido_id" />
+                <ScalarProperty Name="direccion_envio" ColumnName="direccion_envio" />
+                <ScalarProperty Name="ciudad" ColumnName="ciudad" />
+                <ScalarProperty Name="codigo_postal" ColumnName="codigo_postal" />
+                <ScalarProperty Name="pais" ColumnName="pais" />
+                <ScalarProperty Name="fecha_envio" ColumnName="fecha_envio" />
+                <ScalarProperty Name="fecha_entrega_estimada" ColumnName="fecha_entrega_estimada" />
+                <ScalarProperty Name="fecha_entrega" ColumnName="fecha_entrega" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Imagen_Producto">
+            <EntityTypeMapping TypeName="ECommercelibrosModel.Imagen_Producto">
+              <MappingFragment StoreEntitySet="Imagen_Producto">
+                <ScalarProperty Name="ImagenID" ColumnName="ImagenID" />
+                <ScalarProperty Name="producto_id" ColumnName="producto_id" />
+                <ScalarProperty Name="UrlImagen" ColumnName="UrlImagen" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="metodos_pago">
+            <EntityTypeMapping TypeName="ECommercelibrosModel.metodos_pago">
+              <MappingFragment StoreEntitySet="metodos_pago">
+                <ScalarProperty Name="metodo_pago_id" ColumnName="metodo_pago_id" />
+                <ScalarProperty Name="nombre_metodo" ColumnName="nombre_metodo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pedido_productos">
+            <EntityTypeMapping TypeName="ECommercelibrosModel.pedido_productos">
+              <MappingFragment StoreEntitySet="pedido_productos">
+                <ScalarProperty Name="pedido_id" ColumnName="pedido_id" />
+                <ScalarProperty Name="producto_id" ColumnName="producto_id" />
+                <ScalarProperty Name="preciot" ColumnName="preciot" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pedidos">
+            <EntityTypeMapping TypeName="ECommercelibrosModel.pedidos">
+              <MappingFragment StoreEntitySet="pedidos">
+                <ScalarProperty Name="pedido_id" ColumnName="pedido_id" />
+                <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+                <ScalarProperty Name="fecha_pedido" ColumnName="fecha_pedido" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="producto_categorias">
+            <EntityTypeMapping TypeName="ECommercelibrosModel.producto_categorias">
+              <MappingFragment StoreEntitySet="producto_categorias">
+                <ScalarProperty Name="producto_id" ColumnName="producto_id" />
+                <ScalarProperty Name="categoria_id" ColumnName="categoria_id" />
+                <ScalarProperty Name="pcDescripcion" ColumnName="pcDescripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="productos">
+            <EntityTypeMapping TypeName="ECommercelibrosModel.productos">
+              <MappingFragment StoreEntitySet="productos">
+                <ScalarProperty Name="producto_id" ColumnName="producto_id" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="tipo_producto" ColumnName="tipo_producto" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="genero" ColumnName="genero" />
+                <ScalarProperty Name="fecha_publicacion" ColumnName="fecha_publicacion" />
+                <ScalarProperty Name="stock" ColumnName="stock" />
+                <ScalarProperty Name="idioma" ColumnName="idioma" />
+                <ScalarProperty Name="url_archivo" ColumnName="url_archivo" />
+                <ScalarProperty Name="peso" ColumnName="peso" />
+                <ScalarProperty Name="paginas" ColumnName="paginas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="transacciones">
+            <EntityTypeMapping TypeName="ECommercelibrosModel.transacciones">
+              <MappingFragment StoreEntitySet="transacciones">
+                <ScalarProperty Name="transaccion_id" ColumnName="transaccion_id" />
+                <ScalarProperty Name="pedido_id" ColumnName="pedido_id" />
+                <ScalarProperty Name="metodo_pago_id" ColumnName="metodo_pago_id" />
+                <ScalarProperty Name="fecha_pago" ColumnName="fecha_pago" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuarios">
+            <EntityTypeMapping TypeName="ECommercelibrosModel.usuarios">
+              <MappingFragment StoreEntitySet="usuarios">
+                <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="contraseña_hash" ColumnName="contraseña_hash" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="es_admin" ColumnName="es_admin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
