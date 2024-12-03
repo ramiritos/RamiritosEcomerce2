@@ -4,6 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcommerceLibros", "EcommerceLibros\EcommerceLibros.csproj", "{99D7645F-0D63-409B-AD17-64D4C6E81A99}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BEBCFE95-448B-4B14-8AB4-D1C9BEAB993D} = {BEBCFE95-448B-4B14-8AB4-D1C9BEAB993D}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pago", "..\pago\pago\pago.csproj", "{BEBCFE95-448B-4B14-8AB4-D1C9BEAB993D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +20,10 @@ Global
 		{99D7645F-0D63-409B-AD17-64D4C6E81A99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99D7645F-0D63-409B-AD17-64D4C6E81A99}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99D7645F-0D63-409B-AD17-64D4C6E81A99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEBCFE95-448B-4B14-8AB4-D1C9BEAB993D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEBCFE95-448B-4B14-8AB4-D1C9BEAB993D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEBCFE95-448B-4B14-8AB4-D1C9BEAB993D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEBCFE95-448B-4B14-8AB4-D1C9BEAB993D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

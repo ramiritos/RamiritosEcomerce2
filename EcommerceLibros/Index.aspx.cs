@@ -138,6 +138,7 @@ namespace EcommerceLibros
                                                p.tipo_producto == tipoProducto
                                          select new
                                          {
+                                             productoid = p.producto_id,
                                              Titulo = p.titulo,
                                              Descripcion = p.descripcion,
                                              Precio = p.precio,
@@ -272,6 +273,10 @@ namespace EcommerceLibros
                 Response.Redirect("Login.aspx"); // Asegúrate de que el usuario esté autenticado
                 return;
             }
+            decimal total = Carrito.Sum(p => p.Subtotal);
+
+            // Pasa el total a la página de pago como QueryString
+            Response.Redirect($"pago.aspx?total={total}");
 
             int usuarioID = Convert.ToInt32(Session["UsuarioID"]);
 

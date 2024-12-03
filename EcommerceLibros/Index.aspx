@@ -22,7 +22,7 @@
                 <a href="#Libros-fisicos" onclick="showSection('libros-fisicos')">Libros Físicos</a>
                 <a href="#Libros-digitales" onclick="showSection('libros-digitales')">Libros Digitales</a>
                 <a href="#Audio-libros" onclick="showSection('Audio-libros')">Audiolibros</a>
-                <a href="#Carrito" onclick="showSection('carrito')">Carrito</a>
+                <a href="#Carrito" onclick="showSection('carrito')">Carrito 🛒</a>
             </nav>
             <div>
                 <a href="Login.aspx" class="login-button">Iniciar Sesión</a>
@@ -239,7 +239,7 @@
                         </div>
                         <div class="cart-footer">
                             <asp:Button ID="btnFinalizarCompra" runat="server" Text="Finalizar Compra" OnClick="btnFinalizarCompra_Click" CssClass="btn-finalizar-compra" />
-                        </div>
+                         </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </div>
